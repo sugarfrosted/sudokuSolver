@@ -9,8 +9,6 @@ SUBSQUARE = 2
 # possibilities.                                #
 #################################################
 
-
-
 def get_minimal(possiDict, bigPoss):
     small_one = True
     bigPoss += 1
@@ -26,7 +24,7 @@ def get_minimal(possiDict, bigPoss):
     return small_one
     
 
-test = {1: [2, 3, 4], 2: [4, 3, 5, 5], 3: [4, 5, 6]}
+test = {1: [2, 3, 4], 2: True, 3: [4, 5, 6]}
 
 print(test, get_minimal(test, 5)) 
 

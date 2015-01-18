@@ -2,6 +2,29 @@
 
 SUBSQUARE = 2
 
+class sudoku:
+    def gen(self, TupeRange = POSS):
+        pass
+
+    #ONLY MODIFY SOLUTIONS IF COPYING
+    def __init__(self, TupleDict, solutions = None):
+        self.puzzle = TupleDict
+        if solutions is None:
+            self.solutions = self.gen()
+
+    def add(self, address, contents):
+        pass
+
+    def copy(self):
+        return sudoku(self.TupleDict.copy(), solutions = self.solutions.copy())
+
+    def get(self, z):
+        pass
+
+    def keys(self):
+        return self.solutions()
+
+       #make length, make [] address 
     
 
 #################################################
@@ -12,11 +35,11 @@ SUBSQUARE = 2
 def get_minimal(possiDict, bigPoss):
     small_one = True
     bigPoss += 1
-    iterator = sorted((possiDict.keys()))
+    iterator = sorted(possiDict.solutions.keys())
     for z in iterator:
         if possiDict[z] is not True:
             if len(possiDict[z]) < bigPoss:
-                bigPoss = len(possiDict[z])
+                bigPoss = len(possiDict.solutions[z])
                 small_one = z
                 if bigPoss == 0:
                     small_one = False
@@ -30,7 +53,7 @@ print(test, get_minimal(test, 5))
 
 
 def worker(puzzle):
-    smallest = get_minimal(puzzle, BIGGEST_POSITION)
+    smallest = get_minimal(puzzle, BIGGEST_POSITION) #questionable
     if smallest is False:
         return False
     elif smallest is True:
@@ -39,7 +62,7 @@ def worker(puzzle):
         choices = puzzle[smallest]
         for option in choices:
             passpuzzle = puzzle.copy()
-            passpuzzle.append(z, puzzle[z])
+            passpuzzle.append(z, puzzle.get(z))
             worker(passpuzzle)
 
 

@@ -1,19 +1,24 @@
-from numpy import array
+#from numpy import array
 
 SUBSQUARE = 2
+
+    
 
 #################################################
 # Finds least z with the least number of        #
 # possibilities.                                #
 #################################################
 
+
+
 def get_minimal(possiDict, bigPoss):
     small_one = True
     bigPoss += 1
-    for z in possiDict:
+    iterator = sorted((possiDict.keys()))
+    for z in iterator:
         if possiDict[z] is not True:
-            if len(possiDict) < bigPoss:
-                bigPoss = len(possiDict)
+            if len(possiDict[z]) < bigPoss:
+                bigPoss = len(possiDict[z])
                 small_one = z
                 if bigPoss == 0:
                     small_one = False
@@ -21,8 +26,9 @@ def get_minimal(possiDict, bigPoss):
     return small_one
     
 
-    
+test = {1: [2, 3, 4], 2: [4, 3, 5, 5], 3: [4, 5, 6]}
 
+print(test, get_minimal(test, 5)) 
 
 
 

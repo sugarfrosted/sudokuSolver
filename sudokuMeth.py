@@ -24,9 +24,23 @@ def get_minimal(possiDict, bigPoss):
     return small_one
     
 
-test = {1: [2, 3, 4], 2: True, 3: [4, 5, 6]}
+test = {1: [1,2,3], 2: [], 3: True}
 
 print(test, get_minimal(test, 5)) 
+
+
+def worker(puzzle):
+    smallest = get_minimal(puzzle, BIGGEST_POSITION)
+    if smallest is False:
+        return False
+    elif smallest is True:
+        puzzle.out()
+    else:
+        choices = puzzle[smallest]
+        for option in choices:
+            passpuzzle = puzzle.copy()
+            passpuzzle.append(z, puzzle[z])
+            worker(passpuzzle)
 
 
 

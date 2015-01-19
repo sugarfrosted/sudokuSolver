@@ -1,4 +1,10 @@
-def get_minimal(possiDict, bigPoss):
+#################################################
+# Finds least z with the least number of        #
+# possibilities.                                #
+#################################################
+
+
+def get_minimal(possiDict, bigPoss): #implement puzzle class support or drop
     small_one = True
     bigPoss += 1
     iterator = sorted(possiDict.solutions.keys())
@@ -12,10 +18,6 @@ def get_minimal(possiDict, bigPoss):
                     break
     return small_one
     
-
-test = {1: [1,2,3], 2: [], 3: True}
-
-print(test, get_minimal(test, 5)) 
 
 
 def worker(puzzle):

@@ -30,15 +30,21 @@ class sudoku:
             
 
     def copy(self):
-        return sudoku(self.TupleDict.copy(), solutions = self.solutions.copy())
+        return sudoku(deepcopy(self.TupleDict),\
+                solutions = deepcopy(self.solutions),\
+                subsquare = self.subsquare)
 
     def rangeGet(self, address):
         A = []
         for i in range(2):
             A += (address[i] - 1)//self.subsquare + 1
-        lRange = zip(range(1, a) + range(a + 1, self.subsquare ** 2 + 1), repeat(a))
-        lRange += zip(repeat(a), range(1, a) + range(a + 1, self.subsquare ** 2 + 1))
-        lRange += [(A[0] + a, A[1] + b) for a in range(subsquare) for b in range(subsquare)]
+        lRange = zip(range(1, a) +\
+                range(a + 1, self.subsquare ** 2 + 1), repeat(a))
+        lRange += zip(repeat(a), range(1, a) +\
+                range(a + 1, self.subsquare ** 2 + 1))
+        lRange += [(A[0] + a, A[1] + b)\
+                for a in range(subsquare)\
+                for b in range(subsquare)]
         lRange = list(set(lRange) - {address})
         return lRange
 

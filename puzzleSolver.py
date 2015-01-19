@@ -21,14 +21,15 @@ def get_minimal(possiDict, bigPoss): #implement puzzle class support or drop
 
 
 def worker(puzzle):
+    BIGGEST_POSITION = puzzle.subsquare ** 2 + 1
     smallest = get_minimal(puzzle, BIGGEST_POSITION) #questionable
     if smallest is False:
         return False
     elif smallest is True:
         puzzle.out()
     else:
-        choices = puzzle[smallest]
+        choices = puzzle.solutions[smallest]
         for option in choices:
             passpuzzle = puzzle.copy()
-            passpuzzle.append(z, puzzle.get(z))
+            passpuzzle.add(z, puzzle.get(z))
             worker(passpuzzle)

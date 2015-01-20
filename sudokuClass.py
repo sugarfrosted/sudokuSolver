@@ -13,14 +13,16 @@ from pprint import pprint #for testing only
 class sudoku:
     def initgen(self):
         for activeAddress in self.puzzle:
-            activeValue = self.puzzle[activeAddress]
-            self.solutions[activeAddress] = True
-            for activeSquare in self.rangeGet(activeAddress):
-                try:
-                    self.solutions[activeSquare].remove(activeValue)
-                except KeyError:
-                    pass
+            self.gen(activeAddress)
 
+    def gen(self, address):
+        self.solutions[address] = True
+        value = self.puzzle[address]
+        for activeSquare in self.rangeGet(address):
+            try:
+                self.solutions[activeSquare].remove(value)
+            except KeyError:
+                pass
 
     #ONLY MODIFY SOLUTIONS IF COPYING
     def __init__(self, initialState, subsquare = 3):

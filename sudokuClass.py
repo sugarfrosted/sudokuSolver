@@ -44,7 +44,9 @@ class sudoku:
 
     def add(self, address, contents): #wtf was I on
         if address in self.defaultRange:
-            if address not in self.puzzle:
+            if address in self.puzzle:
+                return False
+            elif contents in self.solutions[address]:
                 self.puzzle[address] = contents
                 self.gen(address)
                 return True
@@ -79,10 +81,14 @@ class sudoku:
     def getPoss(self, z):
         pass
 
-    def outputSolution(self):
-        length = self.subspace ** 2
-
-       #make length, make [] address 
+    def outputState(self):
+        hold = ''
+        for i in range(2 * self.subsquare ** 2 + 1):
+            for j in range(self.subsquare ** 2 + 1):
+                hold += self.printCOORD(i ,j)
+            print(hold)
+            hold = ''
+ 
 
     def getFormNum(self, address, numlength):
         if address in self.defaultRange:
@@ -103,7 +109,7 @@ class sudoku:
         pass
 
 
-    def purple(self, row, col):
+    def printCOORD(self, row, col):
        numlength = len(str(self.subsquare ** 2))
        if col == 0:
            if row == 0:
@@ -153,62 +159,3 @@ class sudoku:
            else:
                return '┼' + numlength * '─'
        
-    
-
-
-
-
-test = sudoku({(1,1):4,(3, 4): 5,(7,8): 6}, subsquare = 3)
-hold = ''
-for i in range(2 *test.subsquare ** 2 + 1):
-    for j in range(test.subsquare ** 2 + 1):
-        hold += test.purple(i ,j)
-    print(hold)
-    hold = ''
-
-#╔═╤═╦═╤═╗
-#║o│i║i│i║
-#╟─┼─╫─┼─╢
-#║i│i║ │ ║
-#╠═╪═╬═╪═╣
-#║i│ ║ │ ║
-#╟─┼─╫─┼─╢
-#║i│ ║ │ ║
-#╚═╧═╩═╧═╝
-#╔═╤═╦═╤═╗
-#║i│i║ │ ║
-#╟─┼─╫─┼─╢
-#║i│o║i│i║
-#╠═╪═╬═╪═╣
-#║ │i║ │ ║
-#╟─┼─╫─┼─╢
-#║ │i║ │ ║
-#╚═╧═╩═╧═╝
-#╔═╤═╦═╤═╗
-#║ │i║ │ ║
-#╟─┼─╫─┼─╢
-#║ │i║ │ ║
-#╠═╪═╬═╪═╣
-#║i│o║i│i║
-#╟─┼─╫─┼─╢
-#║i│i║ │ ║
-#╚═╧═╩═╧═╝
-#╔═╤═╤═╦═╤═╤═╦═╤═╤═╗
-#║ │ │ ║i│ │ ║ │ │ ║
-#╟─┼─┼─╫─┼─┼─╫─┼─┼─╢
-#║ │ │ ║i│ │ ║ │ │ ║
-#╟─┼─┼─╫─┼─┼─╫─┼─┼─╢
-#║ │ │ ║i│ │ ║ │ │ ║
-#╠═╪═╪═╬═╪═╪═╬═╪═╪═╣
-#║ │ │ ║i│i│i║ │ │ ║
-#╟─┼─┼─╫─┼─┼─╫─┼─┼─╢
-#║i│i│i║o│i│i║i│i│i║
-#╟─┼─┼─╫─┼─┼─╫─┼─┼─╢
-#║ │ │ ║i│i│i║ │ │ ║
-#╠═╪═╪═╬═╪═╪═╬═╪═╪═╣
-#║ │ │ ║i│ │ ║ │ │ ║
-#╟─┼─┼─╫─┼─┼─╫─┼─┼─╢
-#║ │ │ ║i│ │ ║ │ │ ║
-#╟─┼─┼─╫─┼─┼─╫─┼─┼─╢
-#║ │ │ ║i│ │ ║ │ │ ║
-#╚═╧═╧═╩═╧═╧═╩═╧═╧═╝
